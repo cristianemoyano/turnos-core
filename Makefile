@@ -6,3 +6,6 @@ run:
 
 migrate:
 	python manage.py migrate
+
+deploy:
+	git push heroku master

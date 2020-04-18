@@ -2,7 +2,10 @@ freeze:
 	pipenv run pip freeze > requirements.txt
 
 run:
-	yarn build && python manage.py runserver
+	python manage.py runserver
+
+build:
+	yarn build
 
 migrate:
 	python manage.py migrate

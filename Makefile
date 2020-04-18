@@ -1,0 +1,5 @@
+freeze:
+	pipenv run pip freeze > requirements.txt
+
+run:
+	yarn build && python manage.py runserver

@@ -3,3 +3,6 @@ freeze:
 
 run:
 	yarn build && python manage.py runserver
+
+migrate:
+	python manage.py migrate

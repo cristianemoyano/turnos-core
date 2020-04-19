@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.0 (2020-04-19)
+------------------
+- Add invoke release info (#3)
+
 0.1.0 (2020-04-19)
 ------------------
 Initial beta release

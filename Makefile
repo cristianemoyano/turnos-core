@@ -1,7 +1,7 @@
 freeze:
 	pipenv run pip freeze > requirements.txt
 
-server:
+django:
 	python manage.py runserver
 
 front:

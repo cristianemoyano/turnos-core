@@ -117,11 +117,18 @@ And all changes will displayed on  http://127.0.0.1:8000/
 This app is also ready to be deployed on Heroku:
 
 ```
-heroku create <app name>
-heroku buildpacks:add --index 1 heroku/nodejs
-heroku buildpacks:add --index 2 heroku/python
-make deploy
+$ heroku create <app name>
+$ heroku buildpacks:add --index 1 heroku/nodejs
+$ heroku buildpacks:add --index 2 heroku/python
+$ make deploy
 ```
 
 *Make sure to have installed [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cl).*
 
+### Releases
+
+For new releases run:
+
+```
+$ invoke release
+```

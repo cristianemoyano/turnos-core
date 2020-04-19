@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     # Internal apps
     'api.apps.ApiConfig',
+    'frontend.apps.FrontendConfig',  # enable the frontend app
 ]
 
 MIDDLEWARE = [

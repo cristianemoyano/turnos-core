@@ -1,13 +1,16 @@
 freeze:
 	pipenv run pip freeze > requirements.txt
 
-run:
+server:
 	python manage.py runserver
+
+front:
+	yarn start
 
 makemigrations:
 	python manage.py makemigrations
 
-build:
+compile:
 	yarn build
 
 coverage:

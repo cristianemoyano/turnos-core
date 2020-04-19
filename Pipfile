@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 coverage = "*"
+invoke-release = "*"
 
 [packages]
 django = "~=3.0"
@@ -15,7 +16,7 @@ psycopg2-binary = "~=2.8.3"
 pytz = "==2019.3"
 dj-database-url = "~=0.5"
 python-dotenv = "~=0.13"
-django-rest-knox = "*"
+django-rest-knox = "~=4.1"
 
 [requires]
 python_version = "3.7"

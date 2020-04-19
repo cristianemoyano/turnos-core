@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party apps
     'rest_framework',
+    'knox',
     # Internal apps
+    'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
-    'frontend.apps.FrontendConfig',  # enable the frontend app
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [
@@ -156,8 +158,8 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }

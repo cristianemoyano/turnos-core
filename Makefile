@@ -1,13 +1,13 @@
 freeze:
 	pipenv run pip freeze > requirements.txt
 
-django:
+dev:
 	python manage.py runserver
 
 front:
 	yarn start
 
-makemigrations:
+migrations:
 	python manage.py makemigrations
 
 compile:

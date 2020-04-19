@@ -7,9 +7,21 @@ we'll use combineReducers().
 */
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { LOGOUT_SUCCESS } from '../actions/types';
 import todos from './todos';
+import auth from './auth';
 
-export default combineReducers({
+const appReducer = combineReducers({
   form: formReducer,
-  todos
+  todos,
+  auth
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT_SUCCESS) {
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
+
+export default rootReducer;

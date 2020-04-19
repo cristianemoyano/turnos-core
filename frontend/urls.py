@@ -5,4 +5,6 @@ urlpatterns = [
     path('', views.index),
     path('edit/<int:pk>', views.TodoDetailView.as_view()),
     path('delete/<int:pk>', views.TodoDetailView.as_view()),
+    path('login', views.index),
+    path('register', views.index),
 ]

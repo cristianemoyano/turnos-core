@@ -1,0 +1,34 @@
+# Send Request: https://github.com/pjdietz/rester-sublime-http-client / https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# Register an user
+POST http://127.0.0.1:8000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Cristian",
+    "email": "cris@email.com",
+    "password": "1234"
+}
+
+###
+
+# Get user
+GET http://127.0.0.1:8000/api/auth/user
+Authorization: Token 6d4d1eb38898f92c8ee6327f5ba4ccc0cc90e248c1353d5fa8718643838d24a2
+
+###
+
+# Logout
+POST http://127.0.0.1:8000/api/auth/logout
+Authorization: Token 6d4d1eb38898f92c8ee6327f5ba4ccc0cc90e248c1353d5fa8718643838d24a2
+
+###
+
+# Login
+POST http://127.0.0.1:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Cristian",
+    "password": "1234"
+}

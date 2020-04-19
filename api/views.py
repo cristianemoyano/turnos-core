@@ -1,6 +1,6 @@
-from .models import Lead, Todo
+from .models import Lead
 from .serializers import LeadSerializer, TodoSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 
 class LeadListCreate(viewsets.ModelViewSet):
@@ -9,5 +9,11 @@ class LeadListCreate(viewsets.ModelViewSet):
 
 
 class TodoViewSet(viewsets.ModelViewSet):
-    queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.request.user.todos.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

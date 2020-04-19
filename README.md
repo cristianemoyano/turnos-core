@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is served by Django as Server.
+
+Thanks for this [post](https://medium.com/technest/build-a-crud-todo-app-with-django-and-react-redux-8ddb0b6ac2f0) written by Koji Mochizuki.
+
 
 ## Available Scripts
 
@@ -66,3 +69,59 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+## Development
+
+If you cloned the repository on your computer, initialize your local repository:
+
+```
+$ rm -rf .git
+$ git init
+```
+
+Install the packages:
+
+```
+$ pipenv install
+$ npm install
+```
+
+Run migrations and start the Django dev server:
+
+```
+$ pipenv shell
+$ make migrate
+$ make dev
+```
+
+Open another terminal and run:
+
+```
+make front
+```
+
+
+Visit http://127.0.0.1:8000/ with your browser. This port will render the builded statics, so new changes won't be displayed.
+
+Visit http://127.0.0.1:3000/ to see all changes that you made. Then you can run:
+
+```
+make compile
+```
+
+And all changes will displayed on  http://127.0.0.1:8000/
+
+
+This app is also ready to be deployed on Heroku:
+
+```
+heroku create <app name>
+heroku buildpacks:add --index 1 heroku/nodejs
+heroku buildpacks:add --index 2 heroku/python
+make deploy
+```
+
+*Make sure to have installed [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cl).*
+

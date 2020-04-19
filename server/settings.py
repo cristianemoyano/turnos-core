@@ -156,4 +156,8 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }

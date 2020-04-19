@@ -85,8 +85,10 @@ Install the packages:
 
 ```
 $ pipenv install
-$ npm install
+$ yarn install
 ```
+
+Create a `.env` into the ./server/ folder using the example in the same folder called `.example.env`
 
 Run migrations and start the Django dev server:
 

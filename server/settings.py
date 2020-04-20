@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party apps
     'rest_framework',
+    'rest_framework.authtoken',
     'knox',
     # Internal apps
     'accounts.apps.AccountsConfig',
@@ -162,4 +163,5 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ),
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }

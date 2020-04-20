@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 coverage = "*"
 invoke-release = "*"
+ipdb = "*"
 
 [packages]
 django = "~=3.0"

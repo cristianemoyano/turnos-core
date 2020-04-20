@@ -21,3 +21,6 @@ migrate:
 
 deploy:
 	git push heroku master
+
+test:
+	coverage run manage.py test --settings=server.test_settings -v 2 

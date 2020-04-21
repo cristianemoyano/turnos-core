@@ -25,7 +25,6 @@ script:
   - python manage.py makemigrations
   - python manage.py migrate
   - coverage run manage.py test --settings=server.test_settings -v 2 
-
   # - npm test
 
 after_success:

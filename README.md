@@ -1,3 +1,8 @@
+[![Coverage Status](https://coveralls.io/repos/github/cristianemoyano/turnos-core/badge.svg?branch=master)](https://coveralls.io/github/cristianemoyano/turnos-core?branch=master)
+
+[![Build Status](https://travis-ci.org/cristianemoyano/turnos-core.svg?branch=master)](https://travis-ci.org/cristianemoyano/turnos-core)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is served by Django as Server.
 
 Thanks for this [post](https://medium.com/technest/build-a-crud-todo-app-with-django-and-react-redux-8ddb0b6ac2f0) written by Koji Mochizuki.

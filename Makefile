@@ -33,3 +33,8 @@ monitor-stop:
 
 monitor-ps:
 	docker-compose -f docker-compose.monitoring.yml ps
+
+release:
+	git checkout master
+	git pull origin master
+	invoke release

@@ -24,3 +24,12 @@ deploy:
 
 test:
 	coverage run manage.py test --settings=server.test_settings -v 2 
+
+monitor:
+	docker-compose -f docker-compose.monitoring.yml up
+
+monitor-stop:
+	docker-compose -f docker-compose.monitoring.yml stop
+
+monitor-ps:
+	docker-compose -f docker-compose.monitoring.yml ps

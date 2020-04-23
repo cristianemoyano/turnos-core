@@ -1,0 +1,32 @@
+version: '3.7'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+services:
+# http://localhost:9090/graph
+  prometheus:
+    image: prom/prometheus:v2.14.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+
+# On the login page: user:admin | password:admin
+# http://localhost:4000/?orgId=1
+  grafana: 
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - 4000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always

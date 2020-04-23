@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     '.herokuapp.com',
     '127.0.0.1',
     'localhost',
+    'host.docker.internal',
 ]
 
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'knox',
+    'django_prometheus',
     # Internal apps
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Whitenoise Middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -64,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'

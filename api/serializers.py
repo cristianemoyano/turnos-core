@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Lead, Todo
+from .models import Lead, Todo, Event
 
 
 class LeadSerializer(serializers.ModelSerializer):
@@ -11,4 +11,20 @@ class LeadSerializer(serializers.ModelSerializer):
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
+        fields = '__all__'
+
+
+class EventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
+class EventSaveSerializer(serializers.ModelSerializer):
+    date = serializers.DateField()
+    time = serializers.TimeField()
+
+    class Meta:
+        model = Event
         fields = '__all__'

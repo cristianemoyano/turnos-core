@@ -10,10 +10,12 @@ import { reducer as formReducer } from 'redux-form';
 import { LOGOUT_SUCCESS } from '../actions/types';
 import todos from './todos';
 import auth from './auth';
+import events from './events';
 
 const appReducer = combineReducers({
   form: formReducer,
   todos,
+  events,
   auth
 });
 

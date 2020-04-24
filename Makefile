@@ -1,7 +1,7 @@
 freeze:
 	pipenv run pip freeze > requirements.txt
 
-dev:
+run:
 	python manage.py runserver
 
 front:

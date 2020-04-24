@@ -52,7 +52,7 @@ export const login = ({ username, password }) => async dispatch => {
       type: LOGIN_FAIL
     });
     // We can use stopSubmit() to pass server-side errors to our Redux Form fields.
-    dispatch(stopSubmit('loginForm', err.response.data));
+    dispatch(stopSubmit('loginForm', err.response));
   }
 };
 

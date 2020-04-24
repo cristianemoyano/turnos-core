@@ -15,7 +15,7 @@ class TodoList extends Component {
           <div className='item' key={todo.id}>
             <div className='right floated content'>
               <Link
-                to={`/delete/${todo.id}`}
+                to={`/todo/delete/${todo.id}`}
                 className='small ui negative basic button'
               >
                 Delete
@@ -23,7 +23,7 @@ class TodoList extends Component {
             </div>
             <i className='large calendar outline middle aligned icon' />
             <div className='content'>
-              <Link to={`/edit/${todo.id}`} className='header'>
+              <Link to={`/todo/edit/${todo.id}`} className='header'>
                 {todo.task}
               </Link>
               <div className='description'>{todo.created_at}</div>

@@ -19,6 +19,8 @@ import { loadUser } from './actions/auth';
 import App from './components/App';
 import TodoDelete from './components/todos/TodoDelete';
 import TodoEdit from './components/todos/TodoEdit';
+import EventDelete from './components/book/EventDelete';
+import EventEdit from './components/book/EventEdit';
 import Header from './components/layout/Header';
 
 import store from './store';
@@ -40,8 +42,10 @@ class MainApp extends React.Component {
 					<Header />
 		    		<Switch>
 			            <PrivateRoute exact path='/' component={App} />
-			            <Route exact path='/delete/:id' component={TodoDelete} />
-			            <Route exact path='/edit/:id' component={TodoEdit} />
+			            <Route exact path='/todo/delete/:id' component={TodoDelete} />
+			            <Route exact path='/todo/edit/:id' component={TodoEdit} />
+			            <Route exact path='/event/delete/:id' component={EventDelete} />
+			            <Route exact path='/event/edit/:id' component={EventEdit} />
 			            <Route exact path='/login' component={LoginForm} />
 			            <Route exact path='/register' component={RegisterForm} />
 			         </Switch>

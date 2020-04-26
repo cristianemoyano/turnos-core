@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import TodoList from './TodoList';
-import TodoCreate from './TodoCreate';
 
 import EventSave from '../book/EventSave'
 import EventList from '../book/EventList'
+import Head from '../layout/Head'
 
 class Dashboard extends Component {
   render() {
     return (
       <div className='ui container'>
-        <div>Todo Create Form</div>
-
+        <Head />
         <EventSave />
         <EventList />
 
-        <TodoCreate />
-        <TodoList />
       </div>
     );
   }

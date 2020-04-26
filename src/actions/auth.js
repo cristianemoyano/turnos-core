@@ -24,7 +24,8 @@ export const loadUser = () => async (dispatch, getState) => {
     });
   } catch (err) {
     dispatch({
-      type: AUTH_ERROR
+      type: AUTH_ERROR,
+      payload: err.response,
     });
   }
 };
@@ -45,14 +46,15 @@ export const login = ({ username, password }) => async dispatch => {
     const res = await axios.post('/api/auth/login', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: LOGIN_FAIL
+      type: LOGIN_FAIL,
+      payload: err.response,
     });
     // We can use stopSubmit() to pass server-side errors to our Redux Form fields.
-    dispatch(stopSubmit('loginForm', err.response));
+    dispatch(stopSubmit('loginForm', err.response.data));
   }
 };
 
@@ -84,7 +86,8 @@ export const register = ({ username, email, password }) => async dispatch => {
     });
   } catch (err) {
     dispatch({
-      type: REGISTER_FAIL
+      type: REGISTER_FAIL,
+      payload: err.response,
     });
     // We use stopSubmit() again here to prevent double registration of users.
     dispatch(stopSubmit('registerForm', err.response.data));

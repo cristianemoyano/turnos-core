@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getEvent, editEvent } from '../../actions/events';
@@ -18,7 +17,7 @@ class EventEdit extends Component {
       <div className='ui container'>
         <h2 style={{ marginTop: '2rem' }}>Edit Event</h2>
         <CalendarForm
-          initialValues={_.pick(this.props.event, 'event')}
+          initialValues={this.props.event}
           enableReinitialize={true}
           onSubmit={this.onSubmit}
         />

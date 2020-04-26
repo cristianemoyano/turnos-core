@@ -4,7 +4,8 @@ import {
   GET_EVENT,
   ADD_EVENT,
   DELETE_EVENT,
-  EDIT_EVENT
+  EDIT_EVENT,
+  EVENT_ERROR
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -23,6 +24,11 @@ export default (state = {}, action) => {
       };
     case DELETE_EVENT: // added
       return _.omit(state, action.payload);
+    case EVENT_ERROR:
+      return {
+          ...state,
+          error: action.payload
+      }
     default:
       return state;
   }

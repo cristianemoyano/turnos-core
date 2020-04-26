@@ -11,7 +11,16 @@ class EventSave extends Component {
   render() {
     return (
       <div style={{ marginTop: '2rem' }}>
-        <CalendarForm destroyOnUnmount={false} onSubmit={this.onSubmit} />
+        <CalendarForm
+          destroyOnUnmount={false}
+          onSubmit={this.onSubmit}
+          initialValues={
+            {
+              'date': new Date(),
+              'time': new Date(),
+            }
+          }
+        />
       </div>
     );
   }

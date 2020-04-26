@@ -11,6 +11,7 @@ export const GET_EVENT = 'GET_EVENT';
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
+export const EVENT_ERROR = 'EVENT_ERROR';
 
 // Auth
 export const USER_LOADING = 'USER_LOADING';

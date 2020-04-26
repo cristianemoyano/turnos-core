@@ -8,6 +8,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../actions/auth';
+import Message from '../common/Message'
 
 class LoginForm extends Component {
   renderField = ({ input, label, type, meta: { touched, error } }) => {
@@ -36,12 +37,26 @@ class LoginForm extends Component {
   };
 
   render() {
+
+    const {
+        auth: { error },
+        submitting,
+        pristine,
+    } = this.props;
+
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
     }
     return (
       <div className='ui container'>
         <div className='ui segment'>
+
+        {error && (
+          <div>
+            <Message title='Ops!' message={error.data} type='negative'/>
+          </div>
+        )}
+
           <form
             onSubmit={this.props.handleSubmit(this.onSubmit)}
             className='ui form'
@@ -63,7 +78,7 @@ class LoginForm extends Component {
               type='hidden'
               component={this.hiddenField}
             />
-            <button className='ui primary button'>Login</button>
+            <button className='ui primary button' disabled={pristine || submitting}>Login</button>
           </form>
           <p style={{ marginTop: '1rem' }}>
             Don't have an account? <Link to='/register'>Register</Link>
@@ -75,7 +90,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 LoginForm = connect(

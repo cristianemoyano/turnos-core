@@ -1,5 +1,5 @@
 from .models import Lead
-from .serializers import LeadSerializer, TodoSerializer, EventSerializer, EventSaveSerializer
+from .serializers import LeadSerializer, TodoSerializer, EventSerializer
 from rest_framework import viewsets, permissions
 
 

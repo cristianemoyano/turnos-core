@@ -9,6 +9,9 @@ import { Router, Route, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+
 // Semantic UI https://react.semantic-ui.com/usage
 import 'semantic-ui-css/semantic.min.css'
 
@@ -28,6 +31,10 @@ import history from './history';
 
 import * as serviceWorker from './serviceWorker';
 
+import moment from "moment";
+import "moment/locale/es";
+
+moment.locale("es");
 
 class MainApp extends React.Component {
 
@@ -42,10 +49,10 @@ class MainApp extends React.Component {
 					<Header />
 		    		<Switch>
 			            <PrivateRoute exact path='/' component={App} />
-			            <Route exact path='/todo/delete/:id' component={TodoDelete} />
-			            <Route exact path='/todo/edit/:id' component={TodoEdit} />
-			            <Route exact path='/event/delete/:id' component={EventDelete} />
-			            <Route exact path='/event/edit/:id' component={EventEdit} />
+			            <PrivateRoute exact path='/todo/delete/:id' component={TodoDelete} />
+			            <PrivateRoute exact path='/todo/edit/:id' component={TodoEdit} />
+			            <PrivateRoute exact path='/event/delete/:id' component={EventDelete} />
+			            <PrivateRoute exact path='/event/edit/:id' component={EventEdit} />
 			            <Route exact path='/login' component={LoginForm} />
 			            <Route exact path='/register' component={RegisterForm} />
 			         </Switch>
@@ -58,7 +65,9 @@ class MainApp extends React.Component {
 
 ReactDOM.render(
 	(<Provider store={store}>
-		<MainApp />
+		<MuiPickersUtilsProvider utils={MomentUtils}>
+			<MainApp />
+		</MuiPickersUtilsProvider>
 	</Provider>),
 	document.getElementById('root') || document.createElement('div')
 );

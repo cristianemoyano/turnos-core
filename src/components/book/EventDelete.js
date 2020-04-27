@@ -52,6 +52,7 @@ class EventDelete extends Component {
         title='Delete Event'
         content={this.renderContent()}
         actions={this.renderActions()}
+        error={this.props.error}
         onDismiss={() => history.push('/')}
       />
     );
@@ -59,7 +60,8 @@ class EventDelete extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  event: state.events[ownProps.match.params.id]
+  event: state.events[ownProps.match.params.id],
+  error: state.events.error,
 });
 
 export default connect(

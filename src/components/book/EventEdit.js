@@ -27,7 +27,7 @@ class EventEdit extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  event: state.events[ownProps.match.params.id]
+  event: state.events[ownProps.match.params.id],
 });
 
 export default connect(

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.9.0 (2020-04-26)
+------------------
+- fixes on event (#24)
+- Fix events and several changes (#19)
+
 0.8.0 (2020-04-24)
 ------------------
 - add events (#17)

@@ -13,21 +13,21 @@ export default (state = {}, action) => {
     case GET_EVENTS:
       return {
         ...state,
-        ..._.mapKeys(action.payload, 'id')
+        ..._.mapKeys(action.payload, 'id'),
       };
     case GET_EVENT:
     case ADD_EVENT:
     case EDIT_EVENT:
       return {
         ...state,
-        [action.payload.id]: action.payload
+        [action.payload.id]: action.payload,
       };
     case DELETE_EVENT: // added
       return _.omit(state, action.payload);
     case EVENT_ERROR:
       return {
-          ...state,
-          error: action.payload
+        ...state,
+        error: action.payload
       }
     default:
       return state;

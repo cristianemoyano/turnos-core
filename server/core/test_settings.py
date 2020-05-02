@@ -1,4 +1,4 @@
-from server.settings import *
+from core.settings import *
 
 SOUTH_TESTS_MIGRATE = False
 DATABASES['default'] = {

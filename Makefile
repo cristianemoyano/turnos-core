@@ -2,28 +2,28 @@ freeze:
 	pipenv run pip freeze > requirements.txt
 
 run:
-	python manage.py runserver
+	python ./server/manage.py runserver
 
 front:
-	yarn start
+	cd client && yarn start
 
 migrations:
-	python manage.py makemigrations
+	python ./server/manage.py makemigrations
 
 compile:
-	yarn build
+	cd client && yarn build
 
 coverage:
-	coverage run --source='.' manage.py test && coverage report
+	cd server && coverage run --source='.' manage.py test && coverage report
 
 migrate:
-	python manage.py migrate
+	python ./server/manage.py migrate
 
 deploy:
 	git push heroku master
 
 test:
-	coverage run manage.py test --settings=server.test_settings -v 2 
+	cd server && coverage run manage.py test --settings=core.test_settings -v 2 
 
 monitor:
 	docker-compose -f docker-compose.monitoring.yml up

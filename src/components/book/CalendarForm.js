@@ -1,91 +1,17 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import Message from '../common/Message'
 import moment from "moment";
 
-const DateField = props => {
-  const {
-    meta: { submitting, error, touched },
-    input: { onBlur, value, ...inputProps },
-    ...others
-  } = props;
+import {DateField} from '../common/DateField'
+import {TimeField} from '../common/TimeField'
+import {TextField} from '../common/TextField'
+import {required} from '../common/validations'
 
-  const onChange = date => {
-    Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null);
-  };
+import {bookTexts} from './texts'
 
-  return (
-    <div className={`field ${touched && error ? 'error' : ''}`}>
-        <KeyboardDatePicker
-          {...inputProps}
-          {...others}
-          autoOk
-          value={value ? new Date(value) : new Date()}
-          disabled={submitting}
-          onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
-          error={error && touched}
-          onChange={onChange}
-          placeholder="10/10/2018"
-          format="L"
-          minDate={new Date()}
-        />
-      {touched && error && (
-          <span className='ui pointing red basic label'>{error}</span>
-        )}
-    </div>
-  );
-};
-
-
-const TimeField = props => {
-  const {
-    meta: { submitting, error, touched },
-    input: { onBlur, value, ...inputProps },
-    ...others
-  } = props;
-
-  const onChange = date => {
-    Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null);
-  };
-
-  return (
-    <div className={`field ${touched && error ? 'error' : ''}`}>
-        <KeyboardTimePicker
-          {...inputProps}
-          {...others}
-          value={value ? new Date(value) : new Date()}
-          disabled={submitting}
-          onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
-          error={error && touched}
-          onChange={onChange}
-          ampm={false}
-          format="h:mm a"
-          mask="__:__ _M"
-          placeholder="08:00 AM"
-        />
-      {touched && error && (
-          <span className='ui pointing red basic label'>{error}</span>
-        )}
-    </div>
-  );
-};
-
-
-const TextField = ({ input, label, meta: { touched, error }, placeholder }) => {
-return (
-  <div className={`field ${touched && error ? 'error' : ''}`}>
-    <label>{label}</label>
-    <input {...input} autoComplete='off' placeholder={placeholder} autofocus />
-    {touched && error && (
-      <span className='ui pointing red basic label'>{error}</span>
-    )}
-  </div>
-);
-};
-
-const required = value => value ? undefined : 'Required'
+const texts = bookTexts.calendarForm;
 
 class CalendarForm extends Component {
 
@@ -100,7 +26,7 @@ class CalendarForm extends Component {
         submitting
     } = this.props;
 
-    const btnText = `${this.props.initialValues ? 'Save' : 'Save'}`;
+    const btnText = `${this.props.initialValues ? texts.saveBtn : texts.saveBtn}`;
 
     let maxDate = moment().add(14, 'days');  
 
@@ -119,29 +45,28 @@ class CalendarForm extends Component {
             name='name'
             component={TextField}
             validate={[ required ]}
-            placeholder='Añade un título'
+            placeholder={texts.fields.name} 
         />
         <div class="two fields">
           <Field
             name='date'
             component={DateField}
             maxDate={maxDate}
-            label='Fecha'
+            label={texts.fields.date}
             inputVariant='outlined'
             />
           <Field
             name='time'
             component={TimeField}
-            label='Hora'
+            label={texts.fields.time}
             inputVariant='outlined'
         />
         </div>
         <Field
             name='description'
             component={TextField}
-            placeholder='Añade una descripción'
+            placeholder={texts.fields.description}
         />
-
           <button className='ui primary button' disabled={pristine || submitting}>{btnText}</button>
         </form>
       </div>
@@ -153,7 +78,7 @@ const validate = formValues => {
   const errors = {};
 
   if (!formValues.name) {
-    errors.name = 'Please enter at least 1 character';
+    errors.name = texts.validate.error;
   }
 
   return errors;

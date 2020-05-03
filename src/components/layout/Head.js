@@ -1,9 +1,9 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 
-const Head = () => (
+const Head = ({title}) => (
   <div>
-    <Header as='h1'>Turnos</Header>
+    <Header as='h1'>{title}</Header>
   </div>
 )
 

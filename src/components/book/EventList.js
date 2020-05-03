@@ -17,6 +17,10 @@ import _ from 'lodash'
 import moment from "moment";
 import 'moment-timezone';
 
+import {bookTexts} from './texts'
+
+const texts = bookTexts.eventList;
+
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const getRelativeTime = (date, time) => {
@@ -62,14 +66,14 @@ const List = ({events}) => {
                 <div className='ui two buttons'>
                   <Button basic color='green'>
                     <Link to={`/event/edit/${event.id}`}>
-                        Editar
+                        {texts.list.editBtn}
                     </Link>
                   </Button>
                   <Button basic color='red'>
                     <Link
                         to={`/event/delete/${event.id}`}
                     >
-                        Eliminar
+                        {texts.list.deleteBtn}
                     </Link>
                   </Button>
                 </div>
@@ -146,7 +150,7 @@ class EventList extends Component {
         eventsFeed = (
             <Header icon>
               <Icon name='calendar times file outline' />
-              No hay turnos agendados.
+              {texts.list.noneMsg}
             </Header>
         )
     } else {
@@ -169,7 +173,7 @@ class EventList extends Component {
                         value={value}
                         fluid={true}
                         {...this.props}
-                        noResultsMessage='No hay eventos con esa descripción'
+                        noResultsMessage={texts.list.noResultsMsg}
                     />
                 </Grid.Column>
                 <Grid.Column width={10}>

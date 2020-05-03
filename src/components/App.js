@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-import Dashboard from './todos/Dashboard';
+import Head from './layout/Head'
+import EventList from './book/EventList'
+
 
 class App extends Component {
 
@@ -9,14 +11,15 @@ class App extends Component {
         this.state = {
             data: [],
             loaded: false,
-            placeholder: "Loading"
+            placeholder: "Loading",
         };
     }
 
     render() {
         return (
             <div className="App">
-                <Dashboard />
+                <Head title="Turnos"/>
+                <EventList />
             </div>
         );
     }

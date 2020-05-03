@@ -10,7 +10,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import MomentUtils from '@date-io/moment';
+
 
 // Semantic UI https://react.semantic-ui.com/usage
 import 'semantic-ui-css/semantic.min.css'
@@ -24,7 +26,8 @@ import TodoDelete from './components/todos/TodoDelete';
 import TodoEdit from './components/todos/TodoEdit';
 import EventDelete from './components/book/EventDelete';
 import EventEdit from './components/book/EventEdit';
-import Header from './components/layout/Header';
+import NewAppointment from './components/book/NewAppointment';
+import AppBarInteraction from './components/layout/AppBarInteraction';
 
 import store from './store';
 import history from './history';
@@ -43,19 +46,22 @@ class MainApp extends React.Component {
   	}
 
     render() {
+
         return (
             <React.StrictMode>
 				<Router history={history}>
-					<Header />
-		    		<Switch>
-			            <PrivateRoute exact path='/' component={App} />
-			            <PrivateRoute exact path='/todo/delete/:id' component={TodoDelete} />
-			            <PrivateRoute exact path='/todo/edit/:id' component={TodoEdit} />
-			            <PrivateRoute exact path='/event/delete/:id' component={EventDelete} />
-			            <PrivateRoute exact path='/event/edit/:id' component={EventEdit} />
-			            <Route exact path='/login' component={LoginForm} />
-			            <Route exact path='/register' component={RegisterForm} />
-			         </Switch>
+					<AppBarInteraction>
+			    		<Switch>
+				            <PrivateRoute exact path='/' component={App} />
+				            <Route exact path='/new' component={NewAppointment} />
+				            <PrivateRoute exact path='/todo/delete/:id' component={TodoDelete} />
+				            <PrivateRoute exact path='/todo/edit/:id' component={TodoEdit} />
+				            <PrivateRoute exact path='/event/delete/:id' component={EventDelete} />
+				            <PrivateRoute exact path='/event/edit/:id' component={EventEdit} />
+				            <Route exact path='/login' component={LoginForm} />
+				            <Route exact path='/register' component={RegisterForm} />
+				         </Switch>
+				    </AppBarInteraction>
 		    	</Router>
 	  		</React.StrictMode>
         );
@@ -66,7 +72,9 @@ class MainApp extends React.Component {
 ReactDOM.render(
 	(<Provider store={store}>
 		<MuiPickersUtilsProvider utils={MomentUtils}>
-			<MainApp />
+			 <MuiThemeProvider>
+				<MainApp />
+			 </MuiThemeProvider>
 		</MuiPickersUtilsProvider>
 	</Provider>),
 	document.getElementById('root') || document.createElement('div')

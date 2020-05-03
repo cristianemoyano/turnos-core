@@ -7,4 +7,5 @@ urlpatterns = [
     path('delete/<int:pk>', views.TodoDetailView.as_view()),
     path('login', views.index),
     path('register', views.index),
+    path('new', views.index),
 ]

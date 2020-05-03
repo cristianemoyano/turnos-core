@@ -17,6 +17,10 @@ import Modal from '../layout/Modal';
 import history from '../../history';
 import { getEvent, deleteEvent } from '../../actions/events';
 
+import {bookTexts} from './texts'
+
+const texts = bookTexts.eventDelete;
+
 class EventDelete extends Component {
   componentDidMount() {
     this.props.getEvent(this.props.match.params.id);
@@ -24,9 +28,9 @@ class EventDelete extends Component {
 
   renderContent() {
     if (!this.props.event) {
-      return 'Are you sure you want to delete this event?';
+      return texts.modal.msg;
     }
-    return `Are you sure you want to delete the event: ${this.props.event.name}`;
+    return texts.modal.msgF(this.props.event.name);
   }
 
   renderActions() {
@@ -37,10 +41,10 @@ class EventDelete extends Component {
           onClick={() => this.props.deleteEvent(id)}
           className='ui negative button'
         >
-          Delete
+          {texts.modal.deleteBtn}
         </button>
         <Link to='/' className='ui button'>
-          Cancel
+          {texts.modal.cancelBtn}
         </Link>
       </Fragment>
     );
@@ -49,7 +53,7 @@ class EventDelete extends Component {
   render() {
     return (
       <Modal
-        title='Delete Event'
+        title={texts.modal.title}
         content={this.renderContent()}
         actions={this.renderActions()}
         error={this.props.error}

@@ -42,16 +42,18 @@ class LoginForm extends Component {
         auth: { error },
         submitting,
         pristine,
+        submitFailed,
     } = this.props;
 
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
     }
+
     return (
       <div className='ui container'>
         <div className='ui segment'>
 
-        {error && (
+        {error && submitFailed && (
           <div>
             <Message title='Ops!' message={error.data} type='negative'/>
           </div>

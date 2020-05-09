@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { register } from '../../actions/auth';
 import Message from '../common/Message'
+import {minLength, maxLength, required, passwordsMatch} from '../common/validations'
+
+const minLength3 = minLength(3);
+const maxLength15 = maxLength(15);
 
 class RegisterForm extends Component {
     renderField = ({ input, label, type, meta: { touched, error } }) => {
@@ -90,22 +94,6 @@ class RegisterForm extends Component {
     }
 }
 
-const required = value => (value ? undefined : 'Required');
-
-const minLength = min => value =>
-    value && value.length < min ?
-    `Must be at least ${min} characters` :
-    undefined;
-
-const minLength3 = minLength(3);
-
-const maxLength = max => value =>
-    value && value.length > max ? `Must be ${max} characters or less` : undefined;
-
-const maxLength15 = maxLength(15);
-
-const passwordsMatch = (value, allValues) =>
-    value !== allValues.password ? 'Passwords do not match' : undefined;
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,

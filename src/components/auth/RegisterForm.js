@@ -8,6 +8,7 @@ import { Field, reduxForm } from 'redux-form';
 import { register } from '../../actions/auth';
 import Message from '../common/Message'
 import {minLength, maxLength, required, passwordsMatch} from '../common/validations'
+import Captcha from '../common/Captcha'
 
 const minLength3 = minLength(3);
 const maxLength15 = maxLength(15);
@@ -35,6 +36,7 @@ class RegisterForm extends Component {
             auth: { error },
             submitting,
             pristine,
+            submitFailed,
         } = this.props;
 
 
@@ -45,12 +47,11 @@ class RegisterForm extends Component {
             <div className='ui container'>
                 <div className='ui segment'>
 
-                {error && (
-                  <div>
-                    <Message title='Ops!' message={error.data} type='negative'/>
-                  </div>
-                )}
-
+                    {error && submitFailed && (
+                      <div>
+                        <Message title='Ops!' message={error.data} type='negative'/>
+                      </div>
+                    )}
                   <form
                     onSubmit={this.props.handleSubmit(this.onSubmit)}
                     className='ui form'
@@ -83,6 +84,11 @@ class RegisterForm extends Component {
                       label='Confirm Password'
                       validate={[required, passwordsMatch]}
                     />
+                    <Field
+                      name='captcharesponse'
+                      component={Captcha}
+                      validate={[required]}
+                    />
                     <button className='ui primary button' disabled={pristine || submitting}>Register</button>
                   </form>
                   <p style={{ marginTop: '1rem' }}>
@@ -105,5 +111,6 @@ RegisterForm = connect(
 )(RegisterForm);
 
 export default reduxForm({
-    form: 'registerForm'
+    form: 'registerForm',
+    fields: ['username', 'email', 'password', 'password2','captcharesponse'],
 })(RegisterForm);

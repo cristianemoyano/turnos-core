@@ -176,9 +176,7 @@ class EventList extends Component {
                         noResultsMessage={texts.list.noResultsMsg}
                     />
                 </Grid.Column>
-                <Grid.Column width={10}>
                     {eventsFeed}                 
-                </Grid.Column>
             </Grid>
          </Segment>
     );

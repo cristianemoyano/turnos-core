@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../actions/auth';
 import Message from '../common/Message'
+import Captcha from '../common/Captcha'
+import {required} from '../common/validations'
 
 class LoginForm extends Component {
   renderField = ({ input, label, type, meta: { touched, error } }) => {
@@ -68,12 +70,19 @@ class LoginForm extends Component {
               type='text'
               component={this.renderField}
               label='Username'
+              validate={[required]}
             />
             <Field
               name='password'
               type='password'
               component={this.renderField}
               label='Password'
+              validate={[required]}
+            />
+            <Field
+              name='captcharesponse'
+              component={Captcha}
+              validate={[required]}
             />
             <Field
               name='non_field_errors'
@@ -102,5 +111,6 @@ LoginForm = connect(
 )(LoginForm);
 
 export default reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  fields: ['username', 'password', 'captcharesponse'],
 })(LoginForm);

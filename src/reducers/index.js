@@ -11,12 +11,14 @@ import { LOGOUT_SUCCESS } from '../actions/types';
 import todos from './todos';
 import auth from './auth';
 import events from './events';
+import secrets from './secrets';
 
 const appReducer = combineReducers({
   form: formReducer,
   todos,
   events,
-  auth
+  auth,
+  secrets
 });
 
 const rootReducer = (state, action) => {

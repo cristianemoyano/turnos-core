@@ -20,6 +20,7 @@ dj-database-url = "~=0.5"
 python-dotenv = "~=0.13"
 django-rest-knox = "~=4.1"
 django-prometheus = "~=2.0"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"

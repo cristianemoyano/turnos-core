@@ -8,11 +8,20 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../actions/auth';
+import { getSecrets } from '../../actions/secrets';
 import Message from '../common/Message'
 import Captcha from '../common/Captcha'
+import {PUBLIC_RSA_KEY} from '../common/constants'
 import {required} from '../common/validations'
+import jwt from 'jsonwebtoken'
+import _ from 'lodash'
 
 class LoginForm extends Component {
+    
+  componentDidMount() {
+    this.props.getSecrets();
+  }
+
   renderField = ({ input, label, type, meta: { touched, error } }) => {
     return (
       <div className={`field ${touched && error ? 'error' : ''}`}>
@@ -45,7 +54,17 @@ class LoginForm extends Component {
         submitting,
         pristine,
         submitFailed,
+        secrets,
     } = this.props;
+
+    let secretPayload = {
+        'recaptcha_site_key': 'null',
+    }
+
+    if (!_.isEmpty(secrets)) {
+        secretPayload = jwt.verify(secrets.token, PUBLIC_RSA_KEY);
+    }
+   
 
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
@@ -83,6 +102,7 @@ class LoginForm extends Component {
               name='captcharesponse'
               component={Captcha}
               validate={[required]}
+              recaptchaSiteKey={secretPayload.recaptcha_site_key}
             />
             <Field
               name='non_field_errors'
@@ -103,11 +123,12 @@ class LoginForm extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   auth: state.auth,
+  secrets: state.secrets
 });
 
 LoginForm = connect(
   mapStateToProps,
-  { login }
+  { login, getSecrets }
 )(LoginForm);
 
 export default reduxForm({

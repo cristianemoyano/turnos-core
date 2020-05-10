@@ -28,3 +28,6 @@ class EventSaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+class SecretsSerializer(serializers.Serializer):
+    token = serializers.CharField()

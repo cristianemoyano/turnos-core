@@ -25,6 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+RSA_PRIVATE_KEY = str(os.getenv("RSA_PRIVATE_KEY")).replace("\\n", "\n")
+RSA_PUBLIC_KEY = str(os.getenv("RSA_PUBLIC_KEY")).replace("\\n", "\n")
+RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv("DEBUG"))
 

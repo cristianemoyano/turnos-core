@@ -1,15 +1,16 @@
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const sitekey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
+const Captcha = ({ recaptchaSiteKey, input, label, type, meta: { touched, error } }) => {
 
-const Captcha = ({ input, label, type, meta: { touched, error } }) => {
+	const onChange = (response) => input.onChange(response);
+
 	return (
 	    <div className={`field ${touched && error ? 'error' : ''}`}>
 	   		<label>{label}</label>
 		    <ReCAPTCHA
-		      sitekey={sitekey}
-		      onChange={response => input.onChange(response)}
+		      sitekey={recaptchaSiteKey}
+		      onChange={onChange}
 		    />
 		   	{touched && error && (
 	          <span className='ui pointing red basic label'>{error}</span>

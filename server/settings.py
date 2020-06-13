@@ -28,6 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 RSA_PRIVATE_KEY = str(os.getenv("RSA_PRIVATE_KEY")).replace("\\n", "\n")
 RSA_PUBLIC_KEY = str(os.getenv("RSA_PUBLIC_KEY")).replace("\\n", "\n")
 RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
+RECAPTCHA_ENABLED = bool(int(os.getenv("RECAPTCHA_ENABLED")))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv("DEBUG"))

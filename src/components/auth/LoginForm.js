@@ -3,7 +3,7 @@ If the username and password do not match the information in the database,
 Django returns Non-field errors. To render this error, we need to have a field named 'non_field_errors'.
 */
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -59,13 +59,27 @@ class LoginForm extends Component {
 
     let secretPayload = {
         'recaptcha_site_key': 'null',
+        'recaptcha_enabled': null,
     }
+
+    let recaptchaComponent = (<Fragment />);
 
     if (!_.isEmpty(secrets)) {
         secretPayload = jwt.verify(secrets.token, PUBLIC_RSA_KEY);
+
+        if (secretPayload.recaptcha_enabled === true) {
+            recaptchaComponent = (
+                <Field
+                  name='captcharesponse'
+                  component={Captcha}
+                  validate={[required]}
+                  recaptchaSiteKey={secretPayload.recaptcha_site_key}
+                />
+            );
+        }
+
     }
    
-
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
     }
@@ -98,12 +112,8 @@ class LoginForm extends Component {
               label='Password'
               validate={[required]}
             />
-            <Field
-              name='captcharesponse'
-              component={Captcha}
-              validate={[required]}
-              recaptchaSiteKey={secretPayload.recaptcha_site_key}
-            />
+            {recaptchaComponent}
+
             <Field
               name='non_field_errors'
               type='hidden'

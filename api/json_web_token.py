@@ -8,14 +8,13 @@ class Secret(object):
 
 
 def code_secrets():
-	secrets = {
-		'recaptcha_site_key': settings.RECAPTCHA_SITE_KEY,
-	}
-	token = jwt.encode(secrets, settings.RSA_PRIVATE_KEY, algorithm='RS256').decode('utf-8')
-	return Secret(token=token)
+    secrets = {
+        'recaptcha_site_key': settings.RECAPTCHA_SITE_KEY,
+        'recaptcha_enabled': settings.RECAPTCHA_ENABLED,
+    }
+    token = jwt.encode(secrets, settings.RSA_PRIVATE_KEY, algorithm='RS256').decode('utf-8')
+    return Secret(token=token)
+
 
 def decode_secrets(secret):
-	return jwt.decode(secret.token, settings.RSA_PUBLIC_KEY, algorithms=['RS256'])
-
-
-
+    return jwt.decode(secret.token, settings.RSA_PUBLIC_KEY, algorithms=['RS256'])

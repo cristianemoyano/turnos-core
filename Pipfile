@@ -10,7 +10,7 @@ ipdb = "*"
 coveralls = "*"
 
 [packages]
-django = "~=3.0"
+django = "~=3.1"
 djangorestframework = "~=3.11"
 whitenoise = "~=5.0"
 gunicorn = "~=20.0"
